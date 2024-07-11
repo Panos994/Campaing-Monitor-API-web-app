@@ -6,6 +6,6 @@ npm init -y
 
 npm install express axios body-parser cors dotenv
 
-3)and then in order to run it (localhost:3000):
+3)and then in order to run it (http://localhost:3000):
 
 node server.js 
