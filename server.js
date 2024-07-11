@@ -24,7 +24,11 @@ const getAuthHeader = () => {
     const authHeader = `Basic ${token}`;
     return authHeader;
 };
-
+// Set CSP headers middleware
+app.use((req, res, next) => {
+    res.setHeader('Content-Security-Policy', "default-src 'self'; connect-src 'self' https://api.createsend.com");
+    next();
+});
 app.use(async (req, res, next) => {
     try {
         await fetchListId();
