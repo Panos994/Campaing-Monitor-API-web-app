@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self';">
+    <title>Campaign Monitor List Management</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="http://localhost:3000/">Campaign Monitor List Management</a></li>
+    </ul>
+</nav>
+
+<h1> List Management</h1>
+<div>
+    <input type="text" id="name" placeholder="Name">
+    <input type="email" id="email" placeholder="Email">
+    <input type="checkbox" id="consent" checked>
+    <label for="consent">Consent to track</label>
+    <button id="addButton">Add Subscriber</button><br><br><br><br>
+
+
+
+
+
+    <input type="email" id="removeEmail" placeholder="Enter Email to Remove">
+    <button id="removeButton">Remove Subscriber</button>
+</div>
+<br><br>
+
+<hr>
+<br>
+<h2>Subscribers List</h2><br>
+<ul id="subscriberList"></ul>
+
+<script src="script.js"></script>
+</body>
+</html>

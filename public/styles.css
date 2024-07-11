@@ -1,0 +1,101 @@
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    text-align: center; /* Center align text */
+}
+
+h1 {
+    font-size: 2em; /* Increase font size */
+}
+
+input[type="text"],
+input[type="email"],
+button {
+    padding: 10px; /* Increase padding */
+    font-size: 1em; /* Increase font size */
+    margin: 5px;
+}
+
+button {
+    background-color: #4CAF50; /* Green color for buttons */
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+#subscriberList {
+    list-style-type: none;
+    padding: 0;
+
+}
+
+
+
+
+#subscriberList li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#subscriberList li span {
+    margin-right: 20px;
+}
+
+#subscriberList li div {
+    text-align: left;
+}
+
+#subscriberList li div:first-child {
+    font-weight: bold;
+}
+
+#subscriberList li button {
+    margin-left: 20px;
+}
+
+
+
+.subscriber-item {
+    margin-bottom: 10px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+}
+
+nav {
+    background-color: #333; /* Dark background */
+    overflow: hidden;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    float: left;
+}
+
+nav ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    background-color: #ddd; /* Lighter background on hover */
+    color: black;
+}
