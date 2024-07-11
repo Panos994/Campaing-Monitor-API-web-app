@@ -18,7 +18,7 @@ let listId = process.env.CM_LIST_ID;
 const baseUrl = `https://api.createsend.com/api/v3.3`;
 
 
-// Function to get the authorization header
+// Function for getting the authorization header
 const getAuthHeader = () => {
     const token = Buffer.from(`${apiKey}:`).toString('base64');
     const authHeader = `Basic ${token}`;
