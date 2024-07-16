@@ -17,15 +17,12 @@ const clientId = process.env.CM_CLIENT_ID;
 let listId = process.env.CM_LIST_ID;
 const baseUrl = `https://api.createsend.com/api/v3.3`;
 
-
 // Function for getting the authorization header
 const getAuthHeader = () => {
     const token = Buffer.from(`${apiKey}:`).toString('base64');
     const authHeader = `Basic ${token}`;
     return authHeader;
 };
-
-
 
 app.use(async (req, res, next) => {
     try {
@@ -55,32 +52,7 @@ const fetchListId = async () => {
         }
     }
 };
-// Get one subscriber by email
-app.get('/subscribers', async (req, res) => {
-    const { email } = req.query;
-    try {
-        if (!email) {
-            return res.status(400).json({ error: 'Email parameter is required' });
-        }
-        const subscriberDetails = await fetchSubscriberDetails(email);
-        res.json(subscriberDetails);
-    } catch (error) {
-        console.error('Error fetching subscriber details:', error);
-        res.status(500).json({ error: 'Error fetching subscriber details' });
-    }
-});
 
-const fetchSubscriberDetails = async (email) => {
-    try {
-        const response = await axios.get(`${baseUrl}/subscribers/${listId}.json`, {
-            params: { email },
-            headers: { 'Authorization': getAuthHeader() }
-        });
-        return response.data;
-    } catch (error) {
-        throw error;
-    }
-};
 app.get('/api/subscribers', async (req, res) => {
     try {
         const subscribers = await fetchAllSubscribers();
@@ -102,8 +74,6 @@ const fetchAllSubscribers = async () => {
         throw error;
     }
 };
-
-
 
 // Add subscriber
 app.post('/api/subscribers', async (req, res) => {
