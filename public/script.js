@@ -1,9 +1,11 @@
 /*
 Clicks to add a subscriber (click_add_subscriber)
 Clicks to remove a subscriber (click_remove_subscriber)
+Tracking time from the first input character until the button clicked(time_from_first_char)
 Successful addition of a subscriber (successful_addition)
 Successful removal of a subscriber (successful_removal)
 Errors from the Campaign Monitor API (error_cm_api)
+
 */
 
 // API base URL
