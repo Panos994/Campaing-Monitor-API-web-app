@@ -9,9 +9,29 @@ Errors from the Campaign Monitor API (error_cm_api)
 // API base URL
 const apiUrl = 'http://localhost:3000/api';
 
+let addSubscriberFirstCharTime = null;
+let removeSubscriberFirstCharTime = null;
+
 // Event listeners for buttons
 document.getElementById('addButton').addEventListener('click', handleAddSubscriber);
 document.getElementById('removeButton').addEventListener('click', handleRemoveSubscriber);
+
+// Event listeners to capture the first character typed
+document.getElementById('name').addEventListener('input', () => {
+    if (!addSubscriberFirstCharTime) {
+        addSubscriberFirstCharTime = Date.now();
+    }
+});
+document.getElementById('email').addEventListener('input', () => {
+    if (!addSubscriberFirstCharTime) {
+        addSubscriberFirstCharTime = Date.now();
+    }
+});
+document.getElementById('removeEmail').addEventListener('input', () => {
+    if (!removeSubscriberFirstCharTime) {
+        removeSubscriberFirstCharTime = Date.now();
+    }
+});
 
 // Function to fetch subscribers and populate the list
 async function fetchSubscribers() {
@@ -181,11 +201,13 @@ function clearAddSubscriberInputs() {
     document.getElementById('name').value = '';
     document.getElementById('email').value = '';
     document.getElementById('consent').checked = false;
+    addSubscriberFirstCharTime = null;
 }
 
 // Function to clear input field after removing a subscriber
 function clearRemoveSubscriberInput() {
     document.getElementById('removeEmail').value = '';
+    removeSubscriberFirstCharTime = null;
 }
 
 // Function to detect if email is personal or generic
@@ -211,8 +233,11 @@ document.getElementById('addButton').addEventListener('click', async () => {
         hasErrors = true;
     }
 
+    const timeFromFirstChar = addSubscriberFirstCharTime ? Date.now() - addSubscriberFirstCharTime : null;
+
     gtag('event', 'click_add_subscriber', {
         'time_to_click': timeToClick,
+        'time_from_first_char': timeFromFirstChar,
         'email_type': isPersonal ? 'personal' : 'generic',
         'errors': hasErrors
     });
@@ -235,14 +260,48 @@ document.getElementById('removeButton').addEventListener('click', async () => {
         hasErrors = true;
     }
 
+    const timeFromFirstChar = removeSubscriberFirstCharTime ? Date.now() - removeSubscriberFirstCharTime : null;
+
     gtag('event', 'click_remove_subscriber', {
         'time_to_click': timeToClick,
+        'time_from_first_char': timeFromFirstChar,
         'email_type': isPersonal ? 'personal' : 'generic',
         'errors': hasErrors
     });
 
     await handleRemoveSubscriber();
 });
+
+
+/* function to work also the buttons in the subscribers list for removal */
+async function removeSubscriber(email) {
+    try {
+        const response = await fetch(`${apiUrl}/subscribers`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email })
+        });
+        const result = await response.json();
+        console.log('Remove subscriber response:', result);
+
+        if (result.success) {
+            removeSubscriberFromList(email);
+        } else {
+            console.error('Failed to remove subscriber:', result.message);
+        }
+    } catch (error) {
+        console.error('Error removing subscriber:', error);
+    }
+}
+
+
+
+
+
+
+
 
 // Fetch initial subscribers on page load
 fetchSubscribers();
