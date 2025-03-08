@@ -1,6 +1,33 @@
-# Campaing-Monitor-API-web-app (Google Analytics, node.js, Javascript, HTML, CSS).
+# Campaign Monitor API Web App  
 
-Inside the master branch is included the source code.
-This is a web app for the Measurement of some Google Analytics events like Tracking time from the first typed input character until the button clicked (time_from_first_char),Button Clicks of the user, Consent to track its actions,time to response to the deletion and addition of a subscriber etc.
-I used gtag for the tracking of these metrics by creating a tracking id (G-XXXXXXXXXX) in my Google Analytics account.
-I am using CampaignMonitor's API to manage a subscribers list (add or remove subscriber and tracking the subscribers list) https://www.campaignmonitor.com/api/
+## Overview  
+This web app tracks **Google Analytics events** and integrates with the **Campaign Monitor API** to manage a subscriber list. The project records key user interactions, such as time spent before submitting a form, button clicks, and consent tracking.  
+
+## Features  
+- **Google Analytics Event Tracking (gtag.js):**  
+  - Tracks the time from the first typed input character until the submit button is clicked (`time_from_first_char`).  
+  - Records button clicks and user consent for tracking.  
+  - Measures response time for subscriber additions and deletions.  
+- **Campaign Monitor API Integration:**  
+  - Adds and removes subscribers from a mailing list.  
+  - Tracks subscriber list updates.  
+
+## Tech Stack  
+- **Frontend:** HTML, CSS, JavaScript  
+- **Backend:** Node.js  
+- **Analytics:** Google Analytics (`gtag.js`)  
+- **API Integration:** [Campaign Monitor API](https://www.campaignmonitor.com/api/)  
+
+## Repository Structure  
+- The **master branch** contains the full source code.  
+
+## Setup Instructions  
+### Prerequisites  
+- Install **Node.js**  
+- Obtain a **Google Analytics tracking ID (G-XXXXXXXXXX)**  
+- Get a **Campaign Monitor API Key**  
+
+### Installation  
+1. Clone the repository:  
+   ```bash
+   git clone https://github.com/Panos994/Campaing-Monitor-API-web-app.git
